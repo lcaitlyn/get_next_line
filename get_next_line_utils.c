@@ -71,7 +71,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 && !s2)
 		return (NULL);
-	s = malloc((ft_strlen(s1)
+	s = (char *)malloc((ft_strlen(s1)
 				   + ft_strlen(s2) + 1) * sizeof(char));
 	if (!s)
 		return (NULL);
@@ -89,5 +89,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		while (j < ft_strlen(s2) && s2[j] != '\0')
 			s[i++] = s2[j++];
 	s[i] = '\0';
+	free ((void *)s1);
 	return (s);
 }

@@ -12,15 +12,17 @@
 
 #include "get_next_line.h"
 
-void	go_next_line(char *buf, char **s)
+void	buf_next_line(char *buf, char **s)
 {
 	char	*n;
 
 	n = ft_strchr(buf, '\n');
-	printf ("[%s]\n", n);
 	*n++ = '\0';
+	printf("[1XXX%p]", &s);
 	*s = ft_strjoin(*s, buf);
+	printf("[2XXX%p]", &s);
 	*s = ft_strjoin(*s, "\n");
+	printf("[3XXX%p]", &s);
 	ft_strncpy(buf, n, ft_strlen(n) + 1);
 }
 
@@ -28,7 +30,8 @@ char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE + 1];
 	char	*s;
-	int		last;
+	long	last;
+	char	*tmp;
 
 	last = 1;
 	s = NULL;
@@ -46,25 +49,28 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (ft_strchr(buf, '\n'))
-		go_next_line(buf, &s);
+		buf_next_line(buf, &s);
 	return (s);
-}/*
+}
 
 int	main()
 {
 	int		fd;
 
+/*	fd = open("../text_new_line.txt", O_RDONLY);
+	printf ("%s", get_next_line(fd));
+	close(fd);*/
 	fd = open("../text.txt", O_RDONLY);
 	printf ("%s", get_next_line(fd));
+/*	printf ("%s", get_next_line(fd));
 	printf ("%s", get_next_line(fd));
 	printf ("%s", get_next_line(fd));
 	printf ("%s", get_next_line(fd));
 	printf ("%s", get_next_line(fd));
 	printf ("%s", get_next_line(fd));
-	printf ("%s", get_next_line(fd));
-	printf ("%s", get_next_line(fd));
+	printf ("%s", get_next_line(fd));*/
 	close(fd);
-	printf ("\n\n\n");
+/*	printf ("\n\n\n");
 	fd = open("../text_empty.txt", O_RDONLY);
 	printf ("%s", get_next_line(fd));
 	close(fd);
@@ -73,6 +79,6 @@ int	main()
 	printf ("%s", get_next_line(fd));
 	printf ("%s", get_next_line(fd));
 	printf ("%s", get_next_line(fd));
-	close(fd);
+	close(fd);*/
 	return 0;
-}*/
+}
