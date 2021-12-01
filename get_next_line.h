@@ -28,5 +28,6 @@ int		ft_strlen(const char *s);
 char	*ft_strchr(const char *str, int a);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
+char	*ft_strdup(char *src);
 
 #endif
